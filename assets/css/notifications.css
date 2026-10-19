@@ -1,0 +1,51 @@
+@import url('styles.css');
+
+/*  ==========================================================================
+                            VARIABLES (:root)
+    ========================================================================== */
+:root {
+    --fs-hero-title: 1.75rem;
+    --fs-hero-subtitle: 0.95rem;
+    --fs-card-title: 1.15rem;
+    --fs-card-desc: 0.9rem;
+    --fs-body: 0.875rem;
+    --fs-small: 0.8rem;
+    --fs-btn: 0.875rem;
+
+    --primary-color: #1e3a8a;
+    --secondary-color: #0891b2;
+    --tertiary-color: #d97706;
+    --neutral-color: #0f172a;
+    --background-color: #f8fafc;
+    --text-color: #ffffff;
+    --error-color: #ff4d4d;
+
+    --severity-high-bg: #dc2626;
+    --severity-medium-bg: #ea580c;
+    --severity-low-bg: #0284c7;
+    
+    --status-active-bg: #e2e8f0;
+    --status-active-text: #334155;
+    --status-progress-bg: #f97316;
+    
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --text-muted: #64748b;
+    --success-color: #16a34a;
+}
+
+/*  ==========================================================================
+                    Contenedor principal de la página
+    ========================================================================== */
+
+.notifications-page-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 1.5rem auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.notifications-section {
+    width: 100%;
+}

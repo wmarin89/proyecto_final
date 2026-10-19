@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones - Reporte Ciudadano</title>
+    <link rel="stylesheet" href="/assets/css/notifications.css">
+    <link rel="stylesheet" href="/assets/css/session-ui.css">
+</head>
+
+<body>
+    
+    <div id="shared-header"></div>
+
+    <!-- Contenedor Principal de Notificaciones -->
+    <section class="notifications-page-container">
+
+        <!-- Miga de pan / Breadcrumb -->
+        <nav class="breadcrumb-container" id="breadcrumb-nav">
+            <p class="breadcrumb-path">
+                <a class="breadcrumb-link" href="/index.html">Panel Principal</a> / Centro de Notificaciones y Alertas
+            </p>
+            <a class="back-link" href="/index.html">
+                ← Volver al Panel Principal
+            </a>
+        </nav>
+
+        <!-- Encabezado de la página -->
+        <div class="page-title-section" id="title-section">
+            <div class="title-header-wrapper">
+                <div class="title-text-group">
+                    <p class="section-subtitle">🔔 AVISOS DE SERVICIO</p>
+                    <h1 class="section-title">Notificaciones</h1>
+                    <p class="section-description">Actualizaciones en tiempo real de tus reportes y avisos comunitarios.</p>
+                </div>
+                <button class="btn-mark-read" id="mark-all-read-btn" type="button">
+                    ✓✓ Marcar todo como leído
+                </button>
+            </div>
+        </div>
+
+        <!-- Filtros por Categoría -->
+        <div class="filter-bar" id="category-filters">
+            <button class="btn filter-btn active" type="button">Todas <span class="counter">3</span></button>
+            <button class="btn filter-btn" type="button">Mis reportes <span class="counter">1</span></button>
+            <button class="btn filter-btn" type="button">Comunidad <span class="counter">2</span></button>
+        </div>
+
+        <!-- Lista de Notificaciones -->
+        <section class="notifications-section" id="notifications-list-section">
+            <div class="incidents-list">
+
+                <!-- NOTIFICACIÓN 1 -->
+                <article class="incident-card">
+                    <div class="card-media">
+                        <span class="incident-id-badge">#REP-84920</span>
+                        <img class="incident-image" src="/assets/img/camara.png" alt="Cables y postes caídos">
+                    </div>
+
+                    <div class="card-body">
+                        <div class="card-header-meta">
+                            <div class="badge-group">
+                                <span class="badge badge-medium-severity">Alumbrado & Redes</span>
+                                <span class="badge badge-in-progress">En Proceso</span>
+                            </div>
+                            <time class="meta-time">Hace 25 min</time>
+                        </div>
+
+                        <h2 class="card-title">Tu reporte de "Cable y Poste caído" cambió a estado En Proceso</h2>
+                        <div class="card-location">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>Av. San Martín e Italia</span>
+                        </div>
+
+                        <p class="card-description">
+                            Cuadrilla #4 despachada trabajando en Av. San Martín e Italia.
+                        </p>
+
+                        <div class="card-footer">
+                            <div class="anon-vote-info">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>Actualizado en tiempo real</span>
+                            </div>
+                            <a class="card-action-link" href="#">Ver Detalles 🡪</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- NOTIFICACIÓN 2 -->
+                <article class="incident-card">
+                    <div class="card-media">
+                        <span class="incident-id-badge">#REP-84512</span>
+                        <img class="incident-image" src="/assets/img/camara.png" alt="Bache reparado">
+                    </div>
+
+                    <div class="card-body">
+                        <div class="card-header-meta">
+                            <div class="badge-group">
+                                <span class="badge badge-low-severity">Vialidad</span>
+                                <span class="badge badge-active">Resuelto</span>
+                            </div>
+                            <time class="meta-time">Ayer, 17:40 hs</time>
+                        </div>
+
+                        <h2 class="card-title">El bache que apoyaste en Belgrano 450 fue asfaltado</h2>
+                        <div class="card-location">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>Calle Belgrano 450</span>
+                        </div>
+
+                        <p class="card-description">
+                            Trabajo verificado y completado por el área de mantenimiento vial.
+                        </p>
+
+                        <div class="card-footer">
+                            <div class="anon-vote-info voted">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <span>100% Finalizado</span>
+                            </div>
+                            <a class="card-action-link" href="#">Ver Foto 📷</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- NOTIFICACIÓN 3 -->
+                <article class="incident-card">
+                    <div class="card-media">
+                        <span class="incident-id-badge">#REP-83901</span>
+                        <img class="incident-image" src="/assets/img/camara.png" alt="Saneamiento municipal">
+                    </div>
+
+                    <div class="card-body">
+                        <div class="card-header-meta">
+                            <div class="badge-group">
+                                <span class="badge badge-high-severity">Saneamiento</span>
+                                <span class="badge badge-in-progress">Prioridad Nivel 2</span>
+                            </div>
+                            <time class="meta-time">Hace 2 horas</time>
+                        </div>
+
+                        <h2 class="card-title">Tu reclamo "Tapa de alcantarilla" sumó 15 apoyos de vecinos</h2>
+                        <div class="card-location">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>Dirección del incidente</span>
+                        </div>
+
+                        <p class="card-description">
+                            Inspección programada para las próximas 24 horas.
+                        </p>
+
+                        <div class="card-footer">
+                            <div class="anon-vote-info">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                <span>15 vecinos apoyaron</span>
+                            </div>
+                            <a class="card-action-link" href="#">Ver Reporte 🡪</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+    </section>
+
+    <footer></footer>
+
+    <script src="/js/header.js"></script>
+    <script src="/js/session-ui.js"></script>
+
+</body>
+
+</html>

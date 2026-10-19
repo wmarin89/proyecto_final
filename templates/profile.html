@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi perfil - Reporte Ciudadano</title>
+    <link rel="stylesheet" href="/assets/css/profile.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/session-ui.css">
+</head>
+
+<body>
+
+    <div id="shared-header"></div>
+
+    <main class="profile-container">
+        <section class="profile-card">
+            <h1>Mi perfil</h1>
+            <p class="profile-intro">
+                Consultá y actualizá tus datos personales.
+            </p>
+
+            <div id="profile-message" class="profile-message" role="status"
+                aria-live="polite" hidden></div>
+
+            <form id="profile-form">
+                <div class="profile-grid">
+
+                    <div class="profile-field">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+
+                    <div class="profile-field">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                    </div>
+
+                    <div class="profile-field">
+                        <label for="dni">DNI</label>
+                        <input type="text" id="dni" name="dni" required>
+                    </div>
+
+                    <div class="profile-field">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="profile-field profile-full">
+                        <label for="departamento_id">Departamento</label>
+                        <select id="departamento_id" name="departamento_id" required>
+                            <option value="">Seleccioná tu departamento</option>
+                            <option value="1">Capital</option>
+                            <option value="2">General Alvear</option>
+                            <option value="3">Godoy Cruz</option>
+                            <option value="4">Guaymallén</option>
+                            <option value="5">Junín</option>
+                            <option value="6">La Paz</option>
+                            <option value="7">Las Heras</option>
+                            <option value="8">Lavalle</option>
+                            <option value="9">Luján de Cuyo</option>
+                            <option value="10">Maipú</option>
+                            <option value="11">Malargüe</option>
+                            <option value="12">Rivadavia</option>
+                            <option value="13">San Carlos</option>
+                            <option value="14">San Martín</option>
+                            <option value="15">San Rafael</option>
+                            <option value="16">Santa Rosa</option>
+                            <option value="17">Tunuyán</option>
+                            <option value="18">Tupungato</option>
+                        </select>
+                    </div>
+
+                    <div class="profile-field profile-full">
+                        <label for="fecha_registro">Fecha de registro</label>
+                        <input type="text" id="fecha_registro" readonly>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="profile-button">
+                    Guardar cambios
+                </button>
+            </form>
+            
+<!-- Botón para abrir la ventana de cambio de contraseña -->
+            <div class="password-actions">
+                 <button type="button" id="open-password-modal" class="btn-password">
+                 Cambiar contraseña
+                </button>
+            </div>
+
+<!-- Ventana flotante -->
+            <div id="password-modal" class="password-modal" hidden>
+                <div class="password-modal-content" role="dialog"
+                    aria-modal="true" aria-labelledby="password-modal-title">
+
+                    <button type="button" id="close-password-modal"
+                         class="password-modal-close" aria-label="Cerrar ventana">
+                      &times;
+                    </button>
+
+                    <h2 id="password-modal-title">Cambiar contraseña</h2>
+                    <p>Ingresá tu contraseña actual y elegí una nueva.</p>
+
+                    <form id="password-form">
+                        <label for="current-password">Contraseña actual</label>
+                        <input type="password" id="current-password"
+                            name="currentPassword" autocomplete="current-password"
+                            required>
+
+                    <label for="new-password">Nueva contraseña</label>
+                    <input type="password" id="new-password"
+                        name="newPassword" autocomplete="new-password"
+                        minlength="8" required>
+
+                    <label for="confirm-new-password">Repetir nueva contraseña</label>
+                    <input type="password" id="confirm-new-password"
+                        name="confirmNewPassword" autocomplete="new-password"
+                        minlength="8" required>
+
+                    <div id="password-message" class="password-message"
+                        role="alert" aria-live="polite" hidden></div>
+
+                    <div class="password-modal-buttons">
+                        <button type="submit" id="save-password-button"
+                            class="btn-password">
+                            Guardar nueva contraseña
+                    </button>
+
+                    <button type="button" id="cancel-password-modal"
+                            class="btn-password-cancel">
+                        Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+            <section class="delete-account">
+                <h2>Eliminar cuenta</h2>
+                <p>
+                    Esta acción elimina tu cuenta y no se puede deshacer.
+                    Los reportes asociados podrían impedir la eliminación.
+                </p>
+
+                <button type="button" id="delete-account-button"
+                    class="delete-button">
+                    Eliminar mi cuenta
+                </button>
+            </section>
+        </section>
+    </main>
+
+    <script src="/js/header.js"></script>
+    <script src="/js/session-ui.js"></script>
+    <script src="/js/profile.js"></script>
+    <script src="/js/password-modal.js"></script>
+
+</body>
+</html>
