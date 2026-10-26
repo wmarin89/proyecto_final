@@ -90,3 +90,50 @@
 .logout-confirm-buttons button {
     min-height: 44px;
 }
+
+/* =========================================
+   BOTÓN FLOTANTE DE CERRAR SESIÓN
+========================================= */
+
+.logout-floating-form {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9998;
+    margin: 0;
+}
+
+.logout-floating-button {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.logout-floating-button:hover {
+    background-color: #b02a37;
+    transform: translateY(-2px);
+}
+
+.logout-floating-button:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 3px;
+}
+
+/* Adaptación para celulares */
+@media (max-width: 480px) {
+    .logout-floating-form {
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .logout-floating-button {
+        padding: 12px 18px;
+    }
+}

@@ -308,3 +308,112 @@ body {
         width: 100%;
     }
 }
+
+/* =========================================
+   VENTANAS FLOTANTES PARA ELIMINAR CUENTA
+========================================= */
+
+.delete-confirm-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.delete-confirm-content {
+    width: 100%;
+    max-width: 440px;
+    box-sizing: border-box;
+    padding: 30px;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: delete-modal-appear 0.2s ease-out;
+}
+
+.delete-confirm-content h2 {
+    margin-top: 0;
+    margin-bottom: 14px;
+    color: #b91c1c;
+    font-size: 23px;
+}
+
+.delete-confirm-text {
+    margin-bottom: 25px;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.delete-confirm-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.delete-confirm-buttons button {
+    min-height: 44px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.delete-confirm-yes {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.delete-confirm-yes:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+}
+
+.delete-confirm-no {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.delete-confirm-no:hover {
+    background: #d1d5db;
+}
+
+.delete-confirm-buttons button:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 3px;
+}
+
+@keyframes delete-modal-appear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .delete-confirm-content {
+        padding: 23px 18px;
+    }
+
+    .delete-confirm-buttons {
+        flex-direction: column;
+    }
+
+    .delete-confirm-buttons button {
+        width: 100%;
+    }
+}

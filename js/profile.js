@@ -107,22 +107,131 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Eliminar la cuenta con confirmación
+    
+    // =========================================
+    // VENTANAS FLOTANTES PARA ELIMINAR LA CUENTA
+    // =========================================
+
+    function mostrarVentanaConfirmacion(titulo, texto, textoAceptar) {
+        return new Promise((resolve) => {
+            const modal = document.createElement('div');
+            modal.className = 'delete-confirm-modal';
+
+            modal.innerHTML = `
+                <div class="delete-confirm-content"
+                     role="dialog"
+                     aria-modal="true"
+                     aria-labelledby="delete-confirm-title">
+
+                    <h2 id="delete-confirm-title"></h2>
+                    <p class="delete-confirm-text"></p>
+
+                    <div class="delete-confirm-buttons">
+                        <button type="button" class="delete-confirm-yes"></button>
+                        <button type="button" class="delete-confirm-no">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modal.querySelector('#delete-confirm-title').textContent = titulo;
+            modal.querySelector('.delete-confirm-text').textContent = texto;
+            modal.querySelector('.delete-confirm-yes').textContent = textoAceptar;
+
+            document.body.appendChild(modal);
+
+            const botonAceptar = modal.querySelector('.delete-confirm-yes');
+            const botonCancelar = modal.querySelector('.delete-confirm-no');
+
+            let resuelto = false;
+
+            function cerrar(resultado) {
+                if (resuelto) return;
+
+                resuelto = true;
+                modal.remove();
+                resolve(resultado);
+            }
+
+            botonAceptar.addEventListener('click', () => cerrar(true));
+            botonCancelar.addEventListener('click', () => cerrar(false));
+
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    cerrar(false);
+                }
+            });
+
+            function manejarEscape(event) {
+                if (event.key === 'Escape' && document.body.contains(modal)) {
+                    cerrar(false);
+                }
+            }
+
+            modal.addEventListener('keydown', manejarEscape);
+            document.addEventListener('keydown', manejarEscape);
+
+            botonCancelar.focus();
+        });
+    }
+
+    // Mostrar el resultado en una ventana flotante
+    
+    function mostrarResultadoEliminacion(titulo, texto) {
+        return new Promise((resolve) => {
+            const modal = document.createElement('div');
+            modal.className = 'delete-confirm-modal';
+
+            modal.innerHTML = `
+                <div class="delete-confirm-content"
+                     role="dialog"
+                     aria-modal="true"
+                     aria-labelledby="delete-result-title">
+
+                    <h2 id="delete-result-title"></h2>
+                    <p class="delete-confirm-text"></p>
+
+                    <div class="delete-confirm-buttons">
+                        <button type="button" class="delete-confirm-yes">
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modal.querySelector('#delete-result-title').textContent = titulo;
+            modal.querySelector('.delete-confirm-text').textContent = texto;
+
+            document.body.appendChild(modal);
+
+            const botonAceptar = modal.querySelector('.delete-confirm-yes');
+            botonAceptar.focus();
+
+            botonAceptar.addEventListener('click', () => {
+                modal.remove();
+                resolve();
+            });
+        });
+    }
+
+    // Ejecutar las dos confirmaciones antes de eliminar
     botonEliminar.addEventListener('click', async () => {
-        const confirmacion = confirm(
-            '¿Estás seguro de que querés eliminar tu cuenta? Esta acción no se puede deshacer.'
+        const primeraConfirmacion = await mostrarVentanaConfirmacion(
+            'Eliminar cuenta',
+            '¿Estás seguro de que querés eliminar tu cuenta? Esta acción no se puede deshacer.',
+            'Sí, continuar'
         );
 
-        if (!confirmacion) {
-            return;
-        }
+        if (!primeraConfirmacion) return;
 
-        const segundaConfirmacion = confirm(
-            'Confirmá nuevamente: se eliminará tu cuenta de Reporte Ciudadano.'
+        const segundaConfirmacion = await mostrarVentanaConfirmacion(
+            'Confirmación definitiva',
+            '¿Realmente querés eliminar tu cuenta de forma permanente de Reporte Ciudadano?',
+            'Eliminar definitivamente'
         );
 
-        if (!segundaConfirmacion) {
-            return;
-        }
+        if (!segundaConfirmacion) return;
 
         ocultarMensaje();
         botonEliminar.disabled = true;
@@ -134,17 +243,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const resultado = await respuesta.json();
 
+            if (respuesta.status === 401) {
+                window.location.href = '/login';
+                return;
+            }
+
             if (!respuesta.ok) {
                 throw new Error(
                     resultado.mensaje || 'No se pudo eliminar la cuenta.'
                 );
             }
 
-            alert(resultado.mensaje);
+            await mostrarResultadoEliminacion(
+                'Cuenta eliminada',
+                resultado.mensaje || 'Tu cuenta se eliminó correctamente.'
+            );
+
             window.location.href = '/login';
 
         } catch (error) {
-            mostrarMensaje(error.message, 'error');
+            await mostrarResultadoEliminacion(
+                'No se pudo eliminar la cuenta',
+                error.message || 'Ocurrió un error al eliminar la cuenta.'
+            );
         } finally {
             botonEliminar.disabled = false;
         }
